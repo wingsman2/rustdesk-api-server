@@ -13,29 +13,64 @@
 </head>
 
 <body>
-    <script src={% static "layui/layui.js" %}></script>
-    <script>
-        layui.use('element', function () {
-            var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
 
-            //监听导航点击
-            element.on('nav(demo)', function (elem) {
-                //console.log(elem)
-                layer.msg(elem.text());
-            });
-        });
-    </script>
+<script src="{% static 'layui/layui.js' %}"></script>
+<script>
+layui.use('element', function() {
+    var element = layui.element;
+    // Navigation hover effect, sub-menu, and other features require the element module
+    element.on('nav(demo)', function(elem) {
+        // console.log(elem)
+        layer.msg(elem.text());
+    });
+});
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Place your globalSearch function or any DOM-related JS here
+    window.globalSearch = function() {
+        var input, filter, tables, tr, td, txtValue;
+        input = document.getElementById("globalSearchInput");
+        filter = input.value.toUpperCase();
+        tables = document.getElementsByTagName("table");
+
+        for (let table of tables) {
+            tr = table.getElementsByTagName("tr");
+            for (let i = 1; i < tr.length; i++) {
+                let row = tr[i];
+                let cells = row.getElementsByTagName("td");
+                let textContent = Array.from(cells).map(cell => cell.textContent.toUpperCase());
+                row.style.display = textContent.some(text => text.includes(filter)) ? "" : "none";
+            }
+        }
+    }
+});
+</script>
+
+<script>
+function copyToClipboard(element) {
+  const text = element.getAttribute('data-content');
+  navigator.clipboard.writeText(text).then(() => {
+    // Display success message or feedback
+    console.log("Copied: " + text);
+  }).catch(err => {
+    // Handle errors
+    console.error('Failed to copy text: ', err);
+  });
+}
+
+</script>
+
 
     <ul class="layui-nav">
-        <li class="layui-nav-item"><a href="/">首页</a></li>
-        <li class="layui-nav-item"><a href="/api/share">分享</a></li>
-        <li class="layui-nav-item"><a href="/webui" target="_blank">网页控制</a></li>
+        <li class="layui-nav-item"><a href="/">Home</a></li>
+        <li class="layui-nav-item"><a href="/api/share">Share</a></li>
+        <li class="layui-nav-item"><a href="/api/installers">Installers</a></li>
 
         {% if u.is_admin %}
-        <li class="layui-nav-item"><a href="/admin" target="_blank">管理后台</a>
+        <li class="layui-nav-item"><a href="/admin" target="_blank">Admin Panel</a>
         </li>
         {% endif %}
-        <li class="layui-nav-item"><a href="/api/user_action?action=logout" target="_blank">退出</a></li>
+        <li class="layui-nav-item"><a href="/api/user_action?action=logout" target="_blank">Logout</a></li>
     </ul>
 
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
