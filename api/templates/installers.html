@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}RustDesk WebUI{% endblock %}
+{% block legend_name %}Installer Files{% endblock %}
+{% block content %}
+<div style="padding: 20px; background-color: #F2F2F2;">
+  <div class="layui-row layui-col-space15">
+    <div class="layui-col-md15">
+      <div class="layui-card">
+        <div class="layui-card-header">Installer Files for {{u.username}}</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <thead>
+              <tr>
+                <th>Windows EXE</th>
+                <th>Windows Installer</th>
+                <th>Linux Installer</th>
+                <th>Mac Installer</th>
+                <th>QR to scan With Mobile App</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> <a href="/static/configs/rustdesk-licensed-secure-string.exe">Download</a><br><br><button onclick="copyToClipboard(this)" data-content="https://UniqueURL/static/configs/rustdesk-licensed-secure-string.exe">Copy Link</button></td>
+                <td> <a href="/static/configs/install.bat">Download bat</a><br><br><button onclick="copyToClipboard(this)" data-content="https://UniqueURL/static/configs/install.bat">Copy Link</button><br>
+                <br><a href="/static/configs/install.ps1">Download Powershell</a><br><br><button onclick="copyToClipboard(this)" data-content="https://UniqueURL/static/configs/install.ps1">Copy Link</button></td>
+                <td> <a href="/static/configs/install-linux.sh">Download</a><br><br><button onclick="copyToClipboard(this)" data-content="https://UniqueURL/static/configs/install-linux.sh">Copy Link</button></td> </td>
+                <td> <a href="/static/configs/install-linux.sh">Download</a><br><br><button onclick="copyToClipboard(this)" data-content="https://UniqueURL/static/configs/install-mac.sh">Copy Link</button></td> </td>
+            <td> <img src="/static/configs/qrcode.png"> </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+          <div class="layui-col-md15">
+      <div class="layui-card">
+        <div class="layui-card-header">Configs for {{u.username}}</div>
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <thead>
+              <tr>
+                <th>Secure String</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> secure-string <button onclick="copyToClipboard(this)" data-content="secure-string">Copy</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+   <div class="layui-col-md15">
+      <div class="layui-card">
+        <div class="layui-card-body">
+          <table class="layui-table">
+            <thead>
+              <tr>
+                <th>API URL</th>
+                <th>Key</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> https://UniqueURL <button onclick="copyToClipboard(this)" data-content="https://UniqueURL">Copy</button></td>
+                <td> UniqueKey <button onclick="copyToClipboard(this)" data-content="UniqueKey">Copy</button></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
