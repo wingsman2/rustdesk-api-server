@@ -302,7 +302,7 @@ def share(request):
         rustdesk_ids = ','.join(rustdesk_ids)
         sharelink = ShareLink(
             uid=request.user.id,
-            shash = getStrSha256(str(time.time())+settings.SALT_CRED),
+            shash = getStrSha256(str(time.time())+settings.salt),
             peers=rustdesk_ids,
         )
         sharelink.save()
