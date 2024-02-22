@@ -11,8 +11,9 @@ from django.db.models import Q
 import copy
 from .views_front import *
 from django.conf import settings
+import hashlib, uuid
 
-
+salt = uuid.uuid4().hex
 def login(request):
     result = {}
     if request.method == 'GET':
