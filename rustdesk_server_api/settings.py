@@ -22,8 +22,8 @@ else:
     SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = [os.environ["SECRET_KEY"]]
 # ID服务器IP或域名，一般与中继服务器，用于web client
 ID_SERVER = os.environ.get("ID_SERVER", '')
 # SECURITY WARNING: don't run with debug turned on in production!
