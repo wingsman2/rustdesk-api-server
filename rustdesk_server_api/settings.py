@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from contextlib import suppress
 import os
 from pathlib import Path
-import hashlib, uuid
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 if "CSRF_TRUSTED_ORIGINS" in os.environ:
@@ -23,7 +21,6 @@ else:
     SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
-salt = uuid.uuid4().hex
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = [os.environ["SECRET_KEY"]]
 # ID服务器IP或域名，一般与中继服务器，用于web client
