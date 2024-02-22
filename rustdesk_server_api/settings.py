@@ -9,21 +9,19 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+from contextlib import suppress
 import os
 from pathlib import Path
+from .secret_config import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-if "CSRF_TRUSTED_ORIGINS" in os.environ:
-    CSRF_TRUSTED_ORIGINS = [os.environ["CSRF_TRUSTED_ORIGINS"]]
-else:
-    CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:21114"]
-    SECURE_CROSS_ORIGIN_OPENER_POLICY = 'None'
+CSRF_TRUSTED_ORIGINS = [CSRF_TRUSTED_ORIGINS] if isinstance(CSRF_TRUSTED_ORIGINS, str) else CSRF_TRUSTED_ORIGINS
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY", 'j%7yjvygpih=6b%qf!q%&ixpn+27dngzdu-i3xh-^3xgy3^nnc')
 # ID服务器IP或域名，一般与中继服务器，用于web client
 ID_SERVER = os.environ.get("ID_SERVER", '')
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -42,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'api',
-    'webui',
 ]
 
 MIDDLEWARE = [
@@ -110,8 +107,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-TIME_ZONE = 'UTC'
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = "UTC"
 
 USE_I18N = True
 
@@ -131,5 +128,7 @@ if DEBUG:
 
 else:
 
-
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')     # 新增
+
+with suppress(ImportError):
+    from .secret_config import *  # noqa
