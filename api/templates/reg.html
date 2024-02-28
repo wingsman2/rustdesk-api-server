@@ -127,6 +127,7 @@
                 success:function(data){
                     if (data.code == 1) {
                         layer.msg('Registration is successful, please go to the login page to log in.');
+                        setTimeout(function(){document.location.href = "/api/user_action?action=login";}, 5000);
                         ///location.href = "login.html";
                     }else {
                         layer.msg(data.msg);
