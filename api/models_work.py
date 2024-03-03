@@ -68,13 +68,13 @@ class RustDeskPeerAdmin(admin.ModelAdmin):
     
 class RustDesDevice(models.Model):
     rid = models.CharField(verbose_name='Client ID', max_length=60, blank=True)
-    cpu = models.CharField(verbose_name='CPU', max_length=20)
-    hostname = models.CharField(verbose_name='Hostname', max_length=20)
-    memory = models.CharField(verbose_name='Memory', max_length=20)
-    os = models.CharField(verbose_name='Operating System', max_length=20)
-    uuid = models.CharField(verbose_name='uuid', max_length=60)
-    username = models.CharField(verbose_name='System Username', max_length=60, blank=True)
-    version = models.CharField(verbose_name='Client Version', max_length=20)
+    cpu = models.CharField(verbose_name='CPU', max_length=100)
+    hostname = models.CharField(verbose_name='Hostname', max_length=100)
+    memory = models.CharField(verbose_name='Memory', max_length=100)
+    os = models.CharField(verbose_name='Operating System', max_length=100)
+    uuid = models.CharField(verbose_name='uuid', max_length=100)
+    username = models.CharField(verbose_name='System Username', max_length=100, blank=True)
+    version = models.CharField(verbose_name='Client Version', max_length=100)
     create_time = models.DateTimeField(verbose_name='Device Registration Time', auto_now_add=True)
     update_time = models.DateTimeField(verbose_name='Device Update Time', auto_now=True, blank=True)
     
