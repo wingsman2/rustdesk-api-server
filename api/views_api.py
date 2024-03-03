@@ -198,8 +198,12 @@ def ab(request):
     'data':'Error updating the address book'
     }
     return JsonResponse(result)
-
+def ab_get(request):
+    # compatible x86-sciter version client，This version of the client can be accessed via "POST /api/ab/get" to get the address book
+    return ab(request)
+    
 def sysinfo(request):
+    request.method = 'GET'
     # Device information is sent only after client registration
     result = {}
     if request.method == 'GET':
